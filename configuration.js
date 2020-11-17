@@ -1,6 +1,7 @@
 settings = {
-    "title": "Bunny's Tricker Function Test",
-    "description": "this is an example test, have fun. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Neque volutpat ac tincidunt vitae semper quis. Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Dignissim enim sit amet venenatis urna cursus eget nunc scelerisque. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Quis risus sed vulputate odio ut enim blandit. Condimentum id venenatis a condimentum vitae sapien pellentesque. Sit amet nisl suscipit adipiscing bibendum est ultricies integer. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et.<br><br> 0 → Not At All Likely<br>1 → Not So Likely<br>2 → Somewhat Likely<br>3 → Very Likely<br>4 → Extremely Likely",
+    "title": "Bunny's Trickster Function Test",
+    "description": "This test will score the likelihood of each Trickster function based on your answers. The highest results will be the most likely. The lowest results will be the least likely.
+<br><br> 0 → Not At All Likely<br>1 → Not So Likely<br>2 → Somewhat Likely<br>3 → Very Likely<br>4 → Extremely Likely",
     "numOptions": 5
 }
 
