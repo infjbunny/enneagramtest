@@ -7,6 +7,12 @@ settings = {
 
 questions = [
     {
+        "description": "Has a perfectly good idea, but doesn't share it in case it could be seen as rude.",
+        "weights": {
+            "Fi": 4
+        }
+    },
+    {
         "description": "Is very specific when describing something.",
         "weights": {
             "Fi": 4
