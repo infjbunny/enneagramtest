@@ -1,0 +1,54 @@
+<head>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Loads the quiz questions. -->
+    <script type="application/javascript" 
+        src="configuration.js">
+    </script>
+</head>
+
+<body>
+    <div class="frame">
+        <h1 id="title"></h1>
+        <p>Raw Results:</p>
+        <table class="results" id="results"></table>
+    </div>
+    <script>
+        // set the page title
+        document.getElementById("title").innerHTML = settings["title"];
+
+        // get the url paramaters
+        var params = new URLSearchParams(window.location.search);
+
+        // get the table to show the scores
+        let table = document.getElementById("results");
+
+
+        // convert URLSearchParams to array
+        array = [];
+        params.forEach(function(val, key) {
+            array.push([key,val]);
+        });
+        
+        // sort the array by the score
+        array.sort((a, b) => b[1] - a[1]);
+
+        // iterate over the array
+        for (var i = 0; i < array.length; i++)
+        {
+            // make a new row in the table
+            let row    = table.insertRow();
+
+            // insert key into new cell
+            let key   = row.insertCell();
+            let text   = document.createTextNode(array[i][0])
+            key.appendChild(text);
+            
+            // insert value into corresponding ccell
+            let value  = row.insertCell();
+            text       = document.createTextNode(array[i][1])
+            value.appendChild(text)
+        }
+    </script>
+</body>

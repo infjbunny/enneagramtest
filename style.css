@@ -1,0 +1,88 @@
+/* oh god i dont know how to do css */
+
+@import url('https://fonts.googleapis.com/css2?family=Rokkitt&display=swap');
+
+body {
+    font-family: "Rokkitt", sans-serif;
+    background-image: url("background.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #ffffff;
+    height: 97%;
+}
+
+.frame {
+    text-align: center;
+    margin: 32px auto;
+    width: 40%;
+    max-width: 60%;
+    min-height: 94%;
+    padding: 1px 64px 32px;
+    background-color: rgba(0,0,0,0.8);
+    border: 1px solid white;
+    font-size: 20px;
+}
+
+button {
+    margin: 14px auto 0;
+    transform: scale(2);
+}
+
+.results {
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid white;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid gray;
+    padding: 8px;
+}
+
+.quiz {
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid white;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: inherit;
+}
+
+
+.quiz td:nth-child(1){
+    word-wrap: break-word;
+    text-align: left;
+    width: 5000px;
+}
+
+.quiz td:nth-child(2) {
+    white-space: nowrap;
+    width: 125px;
+}
+
+.results  td:nth-child(2) {
+    white-space: nowrap;
+    width: 75;
+}
+
+input[type=radio] {
+    transform: scale(2);
+    margin: 8px;
+    color: white;
+}
+
+.container {
+    padding: 7px 1px;
+    margin: 2px
+}
+
+#description {
+    padding: 32px 0;
+    text-align: left;
+}

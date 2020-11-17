@@ -1,0 +1,169 @@
+<head>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Loads the quiz questions. -->
+    <script type="application/javascript" 
+        src="configuration.js">
+    </script>
+</head>
+
+<body>
+    <div class="frame">
+        <h1 id="title"></h1>
+        <p id="description"></p>
+        <table class="quiz" id="quiz">
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">
+                        <b>Question</b>
+                    </td>
+                    <td>
+                        <b>
+                            <span style="margin: 0 14px; word-spacing: 1em;">0  1  2  3  4</span>
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <span style="float: left;"></span>
+        <button onclick="submit()" id="submit" >Submit</button>
+    </div>
+
+    <!-- The actual quiz code. -->
+    <script>
+        // set the title and description
+        document.getElementById("title").innerHTML = settings["title"];
+        document.getElementById("description").innerHTML = settings["description"];
+        
+        // get the number of radio boxes
+        let numOptions = settings["numOptions"];
+        
+        // randomize the question order
+        questions = questions.sort(() => Math.random() - 0.5)
+        
+        // get the table to generate the quiz onto.
+        let table = document.getElementById("quiz");
+
+        // iterate over each question 
+        for ( var i = 0; i < questions.length; i++ )
+        {
+            // create new row
+            let row = table.insertRow();
+
+            // insert the question into a new cell
+            let question = row.insertCell();
+            let text     = document.createTextNode(questions[i]["description"]);
+            question.appendChild(text);
+            
+            // hardcoded colors for radio gradient
+            left_r  = 210;
+            left_g  = 139;
+            left_b  = 139;
+
+            right_r = 135;
+            right_g = 140;
+            right_b = 178;
+            
+            // get the "units" for each individual button
+            unit_r  = (right_r-left_r)/(numOptions-1);
+            unit_g  = (right_g-left_g)/(numOptions-1);
+            unit_b  = (right_b-left_b)/(numOptions-1);
+
+            // make new cell for the buttons
+            let response = row.insertCell();
+
+            for ( var j = 0; j < numOptions; j++ )
+            {
+                // generate the rgb hex for this radio box
+                r = (left_r+Math.round(unit_r*j)).toString(16);
+                if (r.length < 2) { r = "0"+r }
+                g = (left_g+Math.round(unit_g*j)).toString(16);
+                if (g.length < 2) { g = "0"+g }
+                b = (left_b+Math.round(unit_b*j)).toString(16);
+                if (b.length < 2) { b = "0"+b }
+
+                // add the radio box and surrounding
+                let label = document.createElement("label");
+                label.setAttribute("class", "container");
+                label.setAttribute("style", "background-color: #"+r+g+b);
+                response.appendChild(label);
+                var radio = document.createElement("input");
+                radio.setAttribute("type",  "radio");
+                radio.setAttribute("name",  "q"+i);
+                radio.setAttribute("value", j);
+                label.appendChild(radio);
+                var span = document.createElement("span");
+                span.setAttribute("class", "radio");
+                label.appendChild(span);
+            }
+        }
+
+        // called when you press the submit button
+        function submit() {
+
+            // make empty dictionary for the results
+            var results = {};
+
+            // get the table for the quiz
+            var table = document.getElementById("quiz");
+
+            // loop over number of rows, skipping 1 cause of the title row
+            for ( var i = 0; i < table.rows.length-1; i++ )
+            {
+                // for making sure a radio isnt missed
+                var isChecked = false;
+
+                // getting each button for this row
+                var buttons = document.getElementsByName("q"+i);
+
+                for ( var j = 0; j < buttons.length; j++ )
+                {
+                    if (buttons[j].checked) {
+
+                        // loop over the each weight
+                        for (weight in questions[i]["weights"])
+                        {
+                            // if the weight is not in the results, add it
+                            if (!(weight in results)) {
+                                results[weight] = 0
+                            }
+                            var max = questions[i]["weights"][weight];
+                            //results[weight] += ((2*max)/(numOptions-1))*j-max;   -n to n
+                            results[weight] += (max/(numOptions-1))*j;           // 0 to n
+                        }
+                        isChecked = true;
+                        break;
+                    }
+                }
+
+                // if a checkbox is missed, say so and return empty
+                if (!isChecked) 
+                {
+                    document.getElementById('submit').innerHTML = "Please answer every question"
+                    setTimeout(() => { document.getElementById('submit').innerHTML= "Submit"; }, 2000);
+                    return;
+                }
+            }
+
+            // assemble url params
+            var url = 'results.html'
+            var i = true;
+            for (var key in results)
+            {
+                if (i)
+                {
+                    url += '?'+key+'='+results[key];
+                    i = false;
+                    continue;
+                }
+                url += '&'+key+'='+results[key];
+            }
+
+            // navigate to results page
+            location.href = url;
+        }
+    </script>
+
+</body>
