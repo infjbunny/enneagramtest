@@ -1,7 +1,6 @@
 settings = {
     "title": "Bunny's Trickster Function Test",
-    "description": "This test will score the likelihood of each Trickster function based on your answers. The highest results will be the most likely. The lowest results will be the least likely.
-<br><br> 0 → Not At All Likely<br>1 → Not So Likely<br>2 → Somewhat Likely<br>3 → Very Likely<br>4 → Extremely Likely",
+    "description": "This test will score the likelihood of each Trickster function based on your answers. The highest results will be the most likely. The lowest results will be the least likely.<br><br> 0 → Not At All Likely<br>1 → Not So Likely<br>2 → Somewhat Likely<br>3 → Very Likely<br>4 → Extremely Likely",
     "numOptions": 5
 }
 
