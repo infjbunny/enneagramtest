@@ -106,7 +106,7 @@ questions = [
     {
       "description": "Quickly loses interest.",
         "weights": {
-            "Ti(ExFP)": 4
+            "Ti (ExFP)": 4
         }
     },
     {
